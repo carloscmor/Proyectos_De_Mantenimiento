@@ -18,7 +18,7 @@ public class Person {
     public Person(String name, int age, String gender) {
         if(name == null || name == "") throw new IllegalArgumentException("Null name");
         if(age < 0) throw new IllegalArgumentException("Negative age");
-        if(!gender.equals(male) || !gender.equals(female)) throw new IllegalArgumentException("Invalid gender");
+        if(!gender.equals(male) && !gender.equals(female)) throw new IllegalArgumentException("Invalid gender");
             this.name = name;
             this.age = age;
             this.gender = gender;
@@ -45,16 +45,18 @@ public class Person {
      */
     public static double[] averageAgePerGender(List<Person> persons){
         double[] res = new double[2]; //consider index 0 Male average and index 1 Female average.
-            int maleCount = 0, femaleCount = 0;
-            for (Person p : persons) {
-                if (p.gender.equals(male)) {
-                    res[0] += p.age; maleCount++;
-                } else {
-                    res[1] += p.age; femaleCount++;
+            if(persons != null && !persons.isEmpty()){
+                int maleCount = 0, femaleCount = 0;
+                for (Person p : persons) {
+                    if (p.gender.equals(male)) {
+                        res[0] += p.age; maleCount++;
+                    } else {
+                        res[1] += p.age; femaleCount++;
+                    }
                 }
+                res[0] = res[0] / (double) maleCount;
+                res[1] = res[1] / (double) femaleCount;
             }
-            res[0] /= maleCount;
-            res[1] /= femaleCount;
         return res;
     }
 }

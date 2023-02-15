@@ -56,6 +56,7 @@ public class PersonTest {
         assertEquals(m.age(), averages[1]);
     }
 
+    @Test
     public void rightAverageValue(){
         int[] mAges = {10, 5, 20, 15}; double mAverage = 13; //rounded values of averages.
         int[] wAges = {5, 70, 20}; double wAverage = 32;
@@ -69,7 +70,25 @@ public class PersonTest {
         }
 
         double [] averages = Person.averageAgePerGender(l);
-        assertEquals(mAverage, averages[0]);
-        assertEquals(wAverage, averages[1]);
+        assertEquals(mAverage, Math.ceil(averages[0]));
+        assertEquals(wAverage, Math.ceil(averages[1]));
+    }
+
+    @Test
+    public void properName(){
+        Person p = new Person("Carlos", 22, true);
+        assertEquals("Carlos", p.name());
+    }
+
+    @Test
+    public void properAge(){
+        Person p = new Person("Carlos", 22, true);
+        assertEquals(22, p.age());
+    }
+
+    @Test
+    public void properGender(){
+        Person p = new Person("Carlos", 22, true);
+        assertEquals(Person.male, p.gender());
     }
 }

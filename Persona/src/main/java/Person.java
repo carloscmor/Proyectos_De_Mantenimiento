@@ -5,7 +5,7 @@ import java.util.List;
  * Clase que representa a una persona.
  */
 public class Person {
-    private static final String male = "Male", female = "Female"; //Gender strings.
+    public static final String male = "Male", female = "Female"; //Gender strings.
     private final String name, gender;
     private final int age;
 
